@@ -125,6 +125,7 @@
 /Users/clevesoris/Desktop/ICT272/LibraryMS/obj/Debug/net8.0/LibraryMS.MvcApplicationPartsAssemblyInfo.cache
 /Users/clevesoris/Desktop/ICT272/LibraryMS/obj/Debug/net8.0/LibraryMS.RazorAssemblyInfo.cache
 /Users/clevesoris/Desktop/ICT272/LibraryMS/obj/Debug/net8.0/LibraryMS.RazorAssemblyInfo.cs
+/Users/clevesoris/Desktop/ICT272/LibraryMS/obj/Debug/net8.0/LibraryMS.sourcelink.json
 /Users/clevesoris/Desktop/ICT272/LibraryMS/obj/Debug/net8.0/staticwebassets.build.json
 /Users/clevesoris/Desktop/ICT272/LibraryMS/obj/Debug/net8.0/staticwebassets.development.json
 /Users/clevesoris/Desktop/ICT272/LibraryMS/obj/Debug/net8.0/staticwebassets/msbuild.LibraryMS.Microsoft.AspNetCore.StaticWebAssets.props

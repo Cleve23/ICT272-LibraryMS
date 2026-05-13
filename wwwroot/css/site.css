@@ -1,22 +1,77 @@
-html {
-  font-size: 14px;
+/* Auth Pages */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
 }
 
-@media (min-width: 768px) {
-  html {
+.auth-box {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-box h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 4px;
+}
+
+.btn-auth {
+    width: 100%;
+    padding: 12px;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 6px;
     font-size: 16px;
-  }
+    cursor: pointer;
+    margin-top: 15px;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.btn-auth:hover {
+    background: #3498db;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.auth-link {
+    text-align: center;
+    margin-top: 15px;
+    color: #7f8c8d;
 }
 
-body {
-  margin-bottom: 60px;
+/* Home Page */
+.home-container {
+    padding: 40px;
+}
+
+.group-details {
+    margin-top: 30px;
+    max-width: 700px;
 }
