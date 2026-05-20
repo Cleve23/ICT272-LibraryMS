@@ -1,0 +1,91 @@
+@model LibraryMS.Models.Book
+@{ ViewData["Title"] = Model.Title; }
+
+<div class="member-page">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert-error">@TempData["Error"]</div>
+    }
+
+    <div class="book-detail">
+        <div class="book-detail-cover">
+            @if (Model.CoverImagePath != null)
+            {
+                <img src="@Model.CoverImagePath" alt="@Model.Title" />
+            }
+            else
+            {
+                <div class="book-cover-placeholder large">No Image</div>
+            }
+        </div>
+        <div class="book-detail-info">
+            <h2>@Model.Title</h2>
+            <p><strong>Author:</strong> @Model.Author</p>
+            <p><strong>Genre:</strong> @Model.Genre</p>
+            <p><strong>ISBN:</strong> @Model.ISBN</p>
+            <p><strong>Available:</strong> @Model.AvailableCopies / @Model.TotalCopies copies</p>
+            @if (Model.Summary != null)
+            {
+                <p><strong>Summary:</strong> @Model.Summary</p>
+            }
+
+            @if (Model.AvailableCopies > 0)
+            {
+                <form asp-action="Borrow" method="post">
+                    <input type="hidden" name="bookId" value="@Model.Id" />
+                    <button type="submit" class="btn-member"
+                        onclick="return confirm('Borrow @Model.Title?')">Borrow This Book</button>
+                </form>
+            }
+            else
+            {
+                <p class="unavail">Currently unavailable</p>
+            }
+
+            <a asp-action="Browse" class="btn-cancel mt-2">Back to Browse</a>
+        </div>
+    </div>
+
+    <div class="reviews-section">
+        <h3>Reviews (@Model.Feedbacks.Count)</h3>
+
+        @foreach (var f in Model.Feedbacks.OrderByDescending(f => f.DateSubmitted))
+        {
+            <div class="review-card">
+                <div class="review-stars">
+                    @string.Concat(Enumerable.Repeat("★", f.Rating))
+                    @string.Concat(Enumerable.Repeat("☆", 5 - f.Rating))
+                </div>
+                <p>@f.Comment</p>
+                <small>@f.User?.Email — @f.DateSubmitted.ToString("dd/MM/yyyy")</small>
+            </div>
+        }
+
+        <div class="review-form">
+            <h4>Leave a Review</h4>
+            <form asp-action="SubmitFeedback" method="post">
+                <input type="hidden" name="bookId" value="@Model.Id" />
+                <div class="form-group">
+                    <label>Rating</label>
+                    <select name="rating" class="form-control">
+                        <option value="5">★★★★★ Excellent</option>
+                        <option value="4">★★★★☆ Good</option>
+                        <option value="3">★★★☆☆ Average</option>
+                        <option value="2">★★☆☆☆ Poor</option>
+                        <option value="1">★☆☆☆☆ Terrible</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Comment</label>
+                    <textarea name="comment" class="form-control" rows="3"
+                        placeholder="Write your review..."></textarea>
+                </div>
+                <button type="submit" class="btn-member">Submit Review</button>
+            </form>
+        </div>
+    </div>
+</div>
