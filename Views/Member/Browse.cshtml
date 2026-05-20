@@ -1,0 +1,50 @@
+@model IEnumerable<LibraryMS.Models.Book>
+@{ ViewData["Title"] = "Browse Books"; }
+
+<div class="member-page">
+    <h2>Browse Books</h2>
+
+    <form method="get" class="search-bar">
+        <input type="text" name="search" value="@ViewBag.Search"
+               placeholder="Search by title or author..." class="form-control search-input" />
+        <select name="genre" class="form-control genre-select">
+            <option value="">All Genres</option>
+            @foreach (var g in ViewBag.Genres)
+            {
+                <option value="@g" selected="@(ViewBag.Genre == g)">@g</option>
+            }
+        </select>
+        <button type="submit" class="btn-member">Search</button>
+        <a asp-action="Browse" class="btn-cancel">Clear</a>
+    </form>
+
+    <div class="book-grid">
+        @foreach (var book in Model)
+        {
+            <div class="book-card">
+                @if (book.CoverImagePath != null)
+                {
+                    <img src="@book.CoverImagePath" alt="@book.Title" class="book-cover" />
+                }
+                else
+                {
+                    <div class="book-cover-placeholder">No Image</div>
+                }
+                <div class="book-info">
+                    <h4>@book.Title</h4>
+                    <p class="book-author">@book.Author</p>
+                    <span class="badge-genre">@book.Genre</span>
+                    <p class="book-avail @(book.AvailableCopies > 0 ? "avail" : "unavail")">
+                        @(book.AvailableCopies > 0 ? $"{book.AvailableCopies} available" : "Unavailable")
+                    </p>
+                    <a asp-action="Detail" asp-route-id="@book.Id" class="btn-member">View Details</a>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (!Model.Any())
+    {
+        <p class="no-results">No books found. Try a different search.</p>
+    }
+</div>

@@ -1,0 +1,52 @@
+@model IEnumerable<LibraryMS.Models.BorrowRecord>
+@{ ViewData["Title"] = "My Borrows"; }
+
+<div class="member-page">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert-error">@TempData["Error"]</div>
+    }
+
+    <h2>My Borrowing History</h2>
+
+    @if (!Model.Any())
+    {
+        <p>You haven't borrowed any books yet. <a asp-action="Browse">Browse books</a></p>
+    }
+    else
+    {
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Borrowed</th>
+                    <th>Due Date</th>
+                    <th>Returned</th>
+                    <th>Status</th>
+                    <th>Fine</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model)
+                {
+                    <tr class="@(r.Status == LibraryMS.Models.BorrowStatus.Overdue ? "overdue-row" : "")">
+                        <td>
+                            <a asp-action="Detail" asp-route-id="@r.BookId">@r.Book?.Title</a>
+                        </td>
+                        <td>@r.BorrowDate.ToString("dd/MM/yyyy")</td>
+                        <td>@r.DueDate.ToString("dd/MM/yyyy")</td>
+                        <td>@(r.ReturnDate.HasValue ? r.ReturnDate.Value.ToString("dd/MM/yyyy") : "—")</td>
+                        <td>
+                            <span class="status-badge status-@r.Status.ToString().ToLower()">@r.Status</span>
+                        </td>
+                        <td>@(r.FineAmount > 0 ? $"${r.FineAmount:F2}" : "—")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

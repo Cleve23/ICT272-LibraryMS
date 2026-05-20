@@ -74,6 +74,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/clevesoris/Desktop/ICT272/LibraryMS/Views/Member/Browse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVyL0Jyb3dzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/clevesoris/Desktop/ICT272/LibraryMS/Views/Member/MyBorrows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVyL015Qm9ycm93cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/clevesoris/Desktop/ICT272/LibraryMS/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
