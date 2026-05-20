@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="dashboard">
+    <h2>Admin Dashboard</h2>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>@ViewBag.TotalBooks</h3>
+            <p>Total Books</p>
+        </div>
+        <div class="stat-card">
+            <h3>@ViewBag.TotalMembers</h3>
+            <p>Registered Members</p>
+        </div>
+        <div class="stat-card">
+            <h3>@ViewBag.ActiveBorrows</h3>
+            <p>Active Borrows</p>
+        </div>
+        <div class="stat-card warning">
+            <h3>@ViewBag.OverdueBooks</h3>
+            <p>Overdue Books</p>
+        </div>
+    </div>
+
+    <div class="quick-links">
+        <a asp-action="Books" class="btn-admin">Manage Books</a>
+        <a asp-action="Transactions" class="btn-admin">View Transactions</a>
+        <a asp-action="LibraryProfile" class="btn-admin">Library Profile</a>
+        <a asp-action="Reports" class="btn-admin">Reports</a>
+    </div>
+</div>

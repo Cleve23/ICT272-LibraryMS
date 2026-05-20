@@ -1,0 +1,50 @@
+@model LibraryMS.Models.Book
+
+@{
+    ViewData["Title"] = "Add Book";
+}
+
+<div class="form-page">
+    <h2>Add New Book</h2>
+
+    <form asp-action="AddBook" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Author"></label>
+            <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Genre"></label>
+            <input asp-for="Genre" class="form-control" />
+            <span asp-validation-for="Genre" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ISBN"></label>
+            <input asp-for="ISBN" class="form-control" />
+            <span asp-validation-for="ISBN" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Summary"></label>
+            <textarea asp-for="Summary" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="TotalCopies"></label>
+            <input asp-for="TotalCopies" class="form-control" type="number" />
+            <span asp-validation-for="TotalCopies" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Cover Image</label>
+            <input type="file" name="coverImage" class="form-control" accept="image/*" />
+        </div>
+
+        <button type="submit" class="btn-auth">Add Book</button>
+        <a asp-action="Books" class="btn-cancel">Cancel</a>
+    </form>
+</div>

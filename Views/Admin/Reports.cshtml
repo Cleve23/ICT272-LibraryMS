@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<div class="admin-page">
+    <h2>Library Reports</h2>
+
+    <div class="report-section">
+        <h3>Most Borrowed Books</h3>
+        <table class="admin-table">
+            <thead><tr><th>Title</th><th>Times Borrowed</th></tr></thead>
+            <tbody>
+                @foreach (var item in ViewBag.MostBorrowed)
+                {
+                    <tr><td>@item.Title</td><td>@item.Count</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="report-section">
+        <h3>Overdue Books</h3>
+        <table class="admin-table">
+            <thead><tr><th>Member</th><th>Book</th><th>Due Date</th><th>Fine</th></tr></thead>
+            <tbody>
+                @foreach (var item in ViewBag.OverdueList)
+                {
+                    <tr>
+                        <td>@item.User?.Email</td>
+                        <td>@item.Book?.Title</td>
+                        <td>@item.DueDate.ToString("dd/MM/yyyy")</td>
+                        <td>$@item.FineAmount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="report-section">
+        <h3>Most Active Members</h3>
+        <table class="admin-table">
+            <thead><tr><th>Email</th><th>Total Borrows</th></tr></thead>
+            <tbody>
+                @foreach (var item in ViewBag.ActiveMembers)
+                {
+                    <tr><td>@item.Email</td><td>@item.Count</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

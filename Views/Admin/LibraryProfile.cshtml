@@ -1,0 +1,30 @@
+@model LibraryMS.Models.LibraryProfile
+
+@{
+    ViewData["Title"] = "Library Profile";
+}
+
+<div class="admin-page">
+    <h2>Library Profile</h2>
+
+    @if (Model == null)
+    {
+        <p>No profile set up yet.</p>
+        <a asp-action="CreateProfile" class="btn-admin">Create Profile</a>
+    }
+    else
+    {
+        <table class="info-table">
+            <tr><th>Name</th><td>@Model.Name</td></tr>
+            <tr><th>Location</th><td>@Model.Location</td></tr>
+            <tr><th>Operating Hours</th><td>@Model.OperatingHours</td></tr>
+            <tr><th>Phone</th><td>@Model.ContactPhone</td></tr>
+            <tr><th>Email</th><td>@Model.ContactEmail</td></tr>
+            <tr><th>Loan Duration</th><td>@Model.LoanDurationDays days</td></tr>
+            <tr><th>Max Renewals</th><td>@Model.MaxRenewals</td></tr>
+            <tr><th>Max Items</th><td>@Model.MaxBorrowableItems</td></tr>
+            <tr><th>Daily Fine</th><td>$@Model.DailyFineRate</td></tr>
+        </table>
+        <a asp-action="EditProfile" asp-route-id="@Model.Id" class="btn-admin mt-3">Edit Profile</a>
+    }
+</div>

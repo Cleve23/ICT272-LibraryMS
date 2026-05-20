@@ -1,0 +1,48 @@
+@model IEnumerable<LibraryMS.Models.BorrowRecord>
+
+@{
+    ViewData["Title"] = "Borrow Transactions";
+}
+
+<div class="admin-page">
+    <h2>Borrow Transactions</h2>
+
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Member</th>
+                <th>Book</th>
+                <th>Borrow Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Fine</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model)
+            {
+                <tr class="@(record.Status == LibraryMS.Models.BorrowStatus.Overdue ? "overdue-row" : "")">
+                    <td>@record.User?.Email</td>
+                    <td>@record.Book?.Title</td>
+                    <td>@record.BorrowDate.ToString("dd/MM/yyyy")</td>
+                    <td>@record.DueDate.ToString("dd/MM/yyyy")</td>
+                    <td>@record.Status</td>
+                    <td>$@record.FineAmount</td>
+                    <td>
+                        @if (record.Status != LibraryMS.Models.BorrowStatus.Returned)
+                        {
+                            <form asp-action="MarkReturned" asp-route-id="@record.Id" method="post">
+                                <button type="submit" class="btn-edit">Mark Returned</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="text-success">Returned</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,55 @@
+@model IEnumerable<LibraryMS.Models.Book>
+
+@{
+    ViewData["Title"] = "Manage Books";
+}
+
+<div class="admin-page">
+    <div class="page-header">
+        <h2>Book Management</h2>
+        <a asp-action="AddBook" class="btn-admin">+ Add New Book</a>
+    </div>
+
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Cover</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>ISBN</th>
+                <th>Available</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>
+                        @if (book.CoverImagePath != null)
+                        {
+                            <img src="@book.CoverImagePath" alt="cover" class="book-thumb" />
+                        }
+                        else
+                        {
+                            <span>No image</span>
+                        }
+                    </td>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Genre</td>
+                    <td>@book.ISBN</td>
+                    <td>@book.AvailableCopies / @book.TotalCopies</td>
+                    <td>
+                        <a asp-action="EditBook" asp-route-id="@book.Id" class="btn-edit">Edit</a>
+                        <form asp-action="DeleteBook" asp-route-id="@book.Id" method="post" style="display:inline">
+                            <button type="submit" class="btn-delete"
+                                onclick="return confirm('Delete this book?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
